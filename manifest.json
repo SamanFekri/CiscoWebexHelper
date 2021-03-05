@@ -1,7 +1,7 @@
 {
-  "name": "Getting Started Example",
+  "name": "CiscoWebex helper",
   "version": "1.0",
-  "description": "Build an Extension!",
+  "description": "This extension add some event to your CiscoWebex video (Polimi)",
   "permissions": [
     "activeTab"
   ],
