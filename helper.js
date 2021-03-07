@@ -8,7 +8,7 @@ async function injectHelper() {
     i = 0;
     while (myVideoHelper == null && i < 50) {
         console.log("Try to get the video attemp ", i)
-        sleep(2000)
+        await sleep(2000)
         myVideoHelper = document.getElementById("screen_html5_api")
         i++;
     }
