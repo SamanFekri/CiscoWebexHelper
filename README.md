@@ -16,6 +16,13 @@ This extension add some event to your CiscoWebex video (Polimi)\
 
 ### Usage
 
+#### FireFox
+1. Go to `Add-ons`
+2. search Cisco webex helper
+3. Click on Cisco webex helper
+4. Click on Add
+
+#### Chrome
 1. Download the repository or clone it
 2. Put the downloaded in a location that you like
 3. Go to chrome and type `chrome://extensions/` at you url bar
