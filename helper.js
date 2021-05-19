@@ -4,6 +4,16 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+function muteAndUnmute() {
+    try {
+        try { $("#screen").simulate("drag-n-drop", {dx: 1}); } catch (e) { if (debug) { console.warn(e); }};
+
+        setTimeout(function () {
+            try { document.getElementById("soundVolume").click();	} catch (e) {};
+        }, 20)
+    } catch (e) {}
+}
+
 async function injectHelper() {
     await sleep(2000);
     myVideoHelper = null;
@@ -39,6 +49,10 @@ async function injectHelper() {
             case "ArrowDown":
                 // Down pressed
                 updateSpeed("SLOWER");
+                break;
+            case "m":
+                // Down pressed
+                muteAndUnmute();
                 break;
             case " ":
                 document.getElementById("playOrPause").click();
