@@ -23,7 +23,7 @@
   "content_scripts": [
     {
       "matches": [
-        "*://politecnicomilano.webex.com/*"
+        "*://*.webex.com/*"
       ],
       "js":[
         "jquery.min.js",
