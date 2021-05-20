@@ -13,6 +13,7 @@ This extension add some event to your CiscoWebex video (Polimi)\
 * ⬅️ : backward 30s
 * ⬆️ : video speed + 0.1
 * ⬇️ : video speed - 0.1
+* m  : mute/unmute
 
 ### Usage
 
