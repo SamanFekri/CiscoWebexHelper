@@ -114,40 +114,35 @@ if (window.location.href.includes(".webex.com")) {
         }
     }
 
+    let cumulativeVolumeChange = 0;
     function updateSpeed(speed = "FASTER") {
         try {
+            cumulativeVolumeChange += 1;
             try { $("#screen").simulate("drag-n-drop", {dx: 1}); } catch (e) { if (debug) { console.warn(e); }};
 
             setTimeout(function () {
-                try { document.getElementById("playerSetting").click();	} catch (e) {};
+                if(cumulativeVolumeChange <= 1) {
+                    try { document.getElementById("playerSetting").click();	} catch (e) {};
+                }
 
                 setTimeout(function () {
-                    try { document.getElementById("toSpeedSetting").click(); } catch (e) {};
-                    setTimeout(function () {
-                        const speeds = document.getElementsByClassName("icon-ng-check speed-item");
-                        const disabledSpeeds = document.getElementsByClassName("icon-ng-check speed-item disabled");
-                        const b = new Set(disabledSpeeds);
-                        const selectedSpeed = [...speeds].filter(x => !b.has(x))[0];
-                        let speedIndex = 0;
-
-                        for (let i = 0; i < speeds.length; i++) {
-                            if (speeds[i].id === selectedSpeed.id) {
-                                speedIndex = i;
-                            }
+                    let playbackRate = myVideoHelper.playbackRate;
+                    try {
+                        if (speed === "FASTER" && playbackRate < 4.9) {
+                            playbackRate += 0.1;
+                        } else if (speed === "SLOWER" && playbackRate > 0.1) {
+                            playbackRate -= 0.1;
                         }
+                        myVideoHelper.playbackRate = playbackRate;
+                    } catch (e) {}
+                    document.getElementsByClassName("speedValue")[0].innerHTML = round(myVideoHelper.playbackRate, 1) + "x";
 
-                        try {
-                            if (speedIndex < speeds.length -1 && speed === "FASTER") {
-                                speeds[speedIndex+1].click();
-                            } else if (speedIndex > 0 && speed === "SLOWER") {
-                                speeds[speedIndex-1].click();
-                            }
-                        } catch (e) {}
-
-                        setTimeout(function () {
+                    setTimeout(function () {
+                        cumulativeVolumeChange -= 1;
+                        if(cumulativeVolumeChange <= 0) {
                             try { document.getElementById("playerSetting").click();	} catch (e) {};
-                        }, 100);
-                    } , 60);
+                        }
+                    }, 500);
                 } , 60);
             }, 20)
         } catch (e) {}
