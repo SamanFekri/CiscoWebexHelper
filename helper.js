@@ -122,7 +122,10 @@ if (window.location.href.includes(".webex.com")) {
 
             setTimeout(function () {
                 if(cumulativeVolumeChange <= 1) {
-                    try { document.getElementById("playerSetting").click();	} catch (e) {};
+                    if(document.getElementById("settingPopoverID").style.display == "none") {
+                        try { document.getElementById("playerSetting").click();	} catch (e) {};
+                    }
+                    
                 }
 
                 setTimeout(function () {
@@ -142,7 +145,7 @@ if (window.location.href.includes(".webex.com")) {
                         if(cumulativeVolumeChange <= 0) {
                             try { document.getElementById("playerSetting").click();	} catch (e) {};
                         }
-                    }, 500);
+                    }, 1000);
                 } , 60);
             }, 20)
         } catch (e) {}
