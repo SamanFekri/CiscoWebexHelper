@@ -1,6 +1,6 @@
 {
   "name": "CiscoWebex helper",
-  "version": "1.0",
+  "version": "2.0",
   "description": "This extension add some event to your CiscoWebex video (Polimi)",
   "icons": {
     "16": "images/logo16.png",
